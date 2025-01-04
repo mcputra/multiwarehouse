@@ -1,0 +1,11 @@
+006 Creating a Spring Boot project
+Spring Web
+PostgreSQL Driver
+Spring Data JPA
+Spring Boot Actuator
+Spring Boot DevTools
+Lombok 
+Validation
+
+008 Creating Hello World REST API using @RestController
+controller hello world

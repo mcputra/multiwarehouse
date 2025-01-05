@@ -1,0 +1,20 @@
+meta {
+  name: createUserAdress
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:9040/api/user-address/create
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "userId": "5c3e8df1-34bb-45ca-bab1-653d26e26da7",
+    "label": "tes@tes.com",
+    "address": "testestes",
+    "postalCode": "16435"
+  }
+}

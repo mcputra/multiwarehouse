@@ -17,6 +17,5 @@ public class UserDto {
     public static class GetUser {
         private UUID id;
         private String email;
-        private UserAddressDto userAddressDto;
     }
 }

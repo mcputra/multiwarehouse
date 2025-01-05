@@ -5,13 +5,13 @@ import com.multiwarehouse.user.entity.User;
 
 public class UserMapper {
 
-    public static UserDto.CreateUser userToDto(User user, UserDto.CreateUser createUser) {
-        createUser.setEmail(user.getEmail());
-        createUser.setPassword(user.getPassword());
-        return createUser;
+    public static UserDto.GetUser getUserToDto(User user, UserDto.GetUser getUser) {
+        getUser.setId(user.getId());
+        getUser.setEmail(user.getEmail());
+        return getUser;
     }
 
-    public static User userFromDto(UserDto.CreateUser createUser, User user) {
+    public static User creatUserFromDto(UserDto.CreateUser createUser, User user) {
         user.setEmail(createUser.getEmail());
         user.setPassword(createUser.getPassword());
         return user;

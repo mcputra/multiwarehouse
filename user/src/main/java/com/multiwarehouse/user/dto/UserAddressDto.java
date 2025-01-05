@@ -15,7 +15,7 @@ public class UserAddressDto {
         private String postalCode;
     }
 
-    private UUID userId;
+    private UUID id;
     private String label;
     private String address;
     private String postalCode;

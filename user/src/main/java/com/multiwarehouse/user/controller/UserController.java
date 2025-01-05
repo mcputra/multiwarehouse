@@ -24,4 +24,13 @@ public class UserController {
                 .status(HttpStatus.CREATED)
                 .body(new ResponseDto("201", "User created successfully"));
     }
+
+    @GetMapping("/get")
+    public ResponseEntity<UserDto.GetUser> getUser(@RequestParam String email) {
+        UserDto.GetUser user = iUserService.getUser(email);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(user);
+    }
 }

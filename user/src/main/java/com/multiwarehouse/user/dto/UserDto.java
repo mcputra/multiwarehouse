@@ -2,6 +2,8 @@ package com.multiwarehouse.user.dto;
 
 import lombok.Data;
 
+import java.util.UUID;
+
 @Data
 public class UserDto {
 
@@ -11,5 +13,10 @@ public class UserDto {
         private String password;
     }
 
-    private String email;
+    @Data
+    public static class GetUser {
+        private UUID id;
+        private String email;
+        private UserAddressDto userAddressDto;
+    }
 }

@@ -5,12 +5,13 @@ import com.multiwarehouse.user.entity.UserAddress;
 
 public class UserAddressMapper {
 
-    public static UserAddressDto.CreateUserAddress userAddressToDto(
-            UserAddress userAddress, UserAddressDto.CreateUserAddress createUserAddress) {
-        createUserAddress.setLabel(userAddress.getLabel());
-        createUserAddress.setAddress(userAddress.getAddress());
-        createUserAddress.setPostalCode(userAddress.getPostalCode());
-        return createUserAddress;
+    public static UserAddressDto userAddressToDto(
+            UserAddress userAddress, UserAddressDto userAddressDto) {
+        userAddressDto.setId(userAddress.getId());
+        userAddressDto.setLabel(userAddress.getLabel());
+        userAddressDto.setAddress(userAddress.getAddress());
+        userAddressDto.setPostalCode(userAddress.getPostalCode());
+        return userAddressDto;
     }
 
     public static UserAddress userAddressFromDto(UserAddressDto.CreateUserAddress createUserAddress,

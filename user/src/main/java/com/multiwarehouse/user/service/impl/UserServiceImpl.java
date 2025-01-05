@@ -47,4 +47,17 @@ public class UserServiceImpl implements IUserService {
 
         return userDto;
     }
+
+    @Override
+    public boolean updateUser(UserDto.CreateUser userDto) {
+        String email = userDto.getEmail();
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
+
+        UserMapper.creatUserFromDto(userDto, user);
+        userRepository.save(user);
+
+        return true;
+    }
+
 }

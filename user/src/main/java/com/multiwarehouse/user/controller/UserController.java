@@ -33,4 +33,19 @@ public class UserController {
                 .status(HttpStatus.OK)
                 .body(user);
     }
+
+
+    @PutMapping("/update")
+    public ResponseEntity<ResponseDto> updateUser(@RequestBody UserDto.CreateUser user) {
+        boolean isUpdated = iUserService.updateUser(user);
+        if (isUpdated) {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(new ResponseDto("200", "User updated successfully"));
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDto("500", "User not updated"));
+        }
+    }
 }

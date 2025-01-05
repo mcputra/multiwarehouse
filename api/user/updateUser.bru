@@ -1,0 +1,25 @@
+meta {
+  name: updateUser
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:9040/api/user/update
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": "5c3e8df1-34bb-45ca-bab1-653d26e26da7",
+    "email": "tes@tes.com",
+    "password": "yayaaaaaa",
+    "userAddressDto": {
+      "id": "8aba6b78-b817-4225-b717-bf2051f0ca29",
+      "label": "tes@tes.com",
+      "address": "testestes",
+      "postalCode": "12345"
+    }
+  }
+}

@@ -48,4 +48,18 @@ public class UserController {
                     .body(new ResponseDto("500", "User not updated"));
         }
     }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<ResponseDto> deleteUser(@RequestParam String email) {
+        boolean isDeleted = iUserService.deleteUser(email);
+        if (isDeleted) {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(new ResponseDto("200", "User deleted successfully"));
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDto("500", "User not deleted"));
+        }
+    }
 }

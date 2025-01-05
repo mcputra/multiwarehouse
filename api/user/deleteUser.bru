@@ -1,0 +1,15 @@
+meta {
+  name: deleteUser
+  type: http
+  seq: 5
+}
+
+get {
+  url: http://localhost:9040/api/user/get?email=tes@tes.com
+  body: json
+  auth: none
+}
+
+params:query {
+  email: tes@tes.com
+}

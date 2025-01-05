@@ -8,4 +8,6 @@ public interface IUserService {
     UserDto.GetUser getUser(String email);
 
     boolean updateUser(UserDto.CreateUser user);
+
+    boolean deleteUser(String email);
 }

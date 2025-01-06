@@ -45,4 +45,17 @@ public class UserAddressServiceImpl implements IUserAddressService {
         return UserAddressMapper.getUserAddressToDto(userAddress, new UserAddressDto.GetUserAddress());
     }
 
+    @Override
+    public boolean updateUserAddress(UserAddressDto.CreateUserAddress addressDto) {
+        String id = addressDto.getId().toString();
+
+        UserAddress userAddress = userAddressRepository.findById(addressDto.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("UserAddress", "id", id));
+
+        UserAddressMapper.createUserAddressFromDto(addressDto, userAddress);
+        userAddress.setUpdatedAt(LocalDateTime.now());
+        userAddressRepository.save(userAddress);
+
+        return true;
+    }
 }

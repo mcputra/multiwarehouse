@@ -10,4 +10,6 @@ public interface IUserAddressService {
 
     UserAddressDto.GetUserAddress getUserAddress(UUID id);
 
+    boolean updateUserAddress(UserAddressDto.CreateUserAddress userAddress);
+
 }

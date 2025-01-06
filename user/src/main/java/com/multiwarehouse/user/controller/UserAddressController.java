@@ -36,4 +36,17 @@ public class UserAddressController {
                 .body(userAddress);
     }
 
+    @PutMapping("/update")
+    public ResponseEntity<ResponseDto> updateUserAddress(@RequestBody UserAddressDto.CreateUserAddress userAddress) {
+        boolean isUpdated = iUserAddressService.updateUserAddress(userAddress);
+        if (isUpdated) {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(new ResponseDto("200", "User address updated successfully"));
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDto("500", "User address not updated"));
+        }
+    }
 }

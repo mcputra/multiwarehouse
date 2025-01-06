@@ -9,6 +9,7 @@ public class UserAddressDto {
 
     @Data
     public static class CreateUserAddress {
+        private UUID id;
         private UUID userId;
         private String label;
         private String address;

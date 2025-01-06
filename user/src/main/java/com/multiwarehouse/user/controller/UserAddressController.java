@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping(path="/api/user-address", produces = {MediaType.APPLICATION_JSON_VALUE})
 @AllArgsConstructor
@@ -24,4 +26,14 @@ public class UserAddressController {
                 .status(HttpStatus.CREATED)
                 .body(new ResponseDto("201", "User address created successfully"));
     }
+
+    @GetMapping("/get")
+    public ResponseEntity<UserAddressDto.GetUserAddress> getUserAddress(@RequestParam UUID id) {
+        UserAddressDto.GetUserAddress userAddress = iUserAddressService.getUserAddress(id);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(userAddress);
+    }
+
 }

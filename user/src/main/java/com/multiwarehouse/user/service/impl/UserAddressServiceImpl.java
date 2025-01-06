@@ -3,6 +3,7 @@ package com.multiwarehouse.user.service.impl;
 import com.multiwarehouse.user.dto.UserAddressDto;
 import com.multiwarehouse.user.entity.User;
 import com.multiwarehouse.user.entity.UserAddress;
+import com.multiwarehouse.user.exception.ResourceNotFoundException;
 import com.multiwarehouse.user.mapper.UserAddressMapper;
 import com.multiwarehouse.user.repository.UserAddressRepository;
 import com.multiwarehouse.user.repository.UserRepository;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -22,7 +24,7 @@ public class UserAddressServiceImpl implements IUserAddressService {
 
     @Override
     public void createUserAddress(UserAddressDto.CreateUserAddress createUserAddress) {
-        UserAddress userAddress = UserAddressMapper.userAddressFromDto(createUserAddress, new UserAddress());
+        UserAddress userAddress = UserAddressMapper.createUserAddressFromDto(createUserAddress, new UserAddress());
         userAddress.setCreatedAt(LocalDateTime.now());
 
         Optional<User> optionalUser = userRepository.findById(createUserAddress.getUserId());
@@ -34,4 +36,13 @@ public class UserAddressServiceImpl implements IUserAddressService {
 
         userAddressRepository.save(userAddress);
     }
+
+    @Override
+    public UserAddressDto.GetUserAddress getUserAddress(UUID id) {
+        UserAddress userAddress = userAddressRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("UserAddress", "id", id.toString()));
+
+        return UserAddressMapper.getUserAddressToDto(userAddress, new UserAddressDto.GetUserAddress());
+    }
+
 }

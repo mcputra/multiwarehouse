@@ -15,8 +15,12 @@ public class UserAddressDto {
         private String postalCode;
     }
 
-    private UUID id;
-    private String label;
-    private String address;
-    private String postalCode;
+    @Data
+    public static class GetUserAddress {
+        private UUID id;
+        private UUID userId;
+        private String label;
+        private String address;
+        private String postalCode;
+    }
 }

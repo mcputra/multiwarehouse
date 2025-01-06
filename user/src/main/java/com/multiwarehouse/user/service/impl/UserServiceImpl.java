@@ -24,7 +24,7 @@ public class UserServiceImpl implements IUserService {
         User user = UserMapper.creatUserFromDto(createUser, new User());
         Optional<User> existingUser = userRepository.findByEmail(createUser.getEmail());
         if (existingUser.isPresent()) {
-            throw new UserAlreadyExistsException("User already exists" + createUser.getEmail());
+            throw new UserAlreadyExistsException("User already exists with email: " + createUser.getEmail());
         }
         user.setCreatedAt(LocalDateTime.now());
         userRepository.save(user);
@@ -40,11 +40,13 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public boolean updateUser(UserDto.CreateUser userDto) {
-        String email = userDto.getEmail();
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
+        String id = userDto.getId().toString();
+
+        User user = userRepository.findById(userDto.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
 
         UserMapper.creatUserFromDto(userDto, user);
+        user.setUpdatedAt(LocalDateTime.now());
         userRepository.save(user);
 
         return true;

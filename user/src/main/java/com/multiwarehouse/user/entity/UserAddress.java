@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user_address", schema = "public")
+@Table(name = "user_address", schema = "public", uniqueConstraints = @UniqueConstraint(columnNames = "user_id"))
 @Getter
 @Setter
 @ToString
@@ -17,7 +17,7 @@ public class UserAddress extends BaseEntity {
     @Id
     private UUID id = UUID.randomUUID();
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

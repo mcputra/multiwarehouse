@@ -28,7 +28,7 @@ public class User extends BaseEntity {
     @Size(min = 8)
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<UserAddress> addresses;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private UserAddress address;
 
 }

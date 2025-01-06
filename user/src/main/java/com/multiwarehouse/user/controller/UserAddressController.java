@@ -49,4 +49,18 @@ public class UserAddressController {
                     .body(new ResponseDto("500", "User address not updated"));
         }
     }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<ResponseDto> deleteUserAddress(@RequestParam UUID id) {
+        boolean isDeleted = iUserAddressService.deleteUserAddress(id);
+        if (isDeleted) {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(new ResponseDto("200", "User address deleted successfully"));
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDto("500", "User address not deleted"));
+        }
+    }
 }

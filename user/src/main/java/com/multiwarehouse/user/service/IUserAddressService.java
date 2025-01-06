@@ -12,4 +12,5 @@ public interface IUserAddressService {
 
     boolean updateUserAddress(UserAddressDto.CreateUserAddress userAddress);
 
+    boolean deleteUserAddress(UUID id);
 }

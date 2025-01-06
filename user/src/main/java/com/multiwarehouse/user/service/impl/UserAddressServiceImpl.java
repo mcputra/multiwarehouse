@@ -58,4 +58,12 @@ public class UserAddressServiceImpl implements IUserAddressService {
 
         return true;
     }
+
+    @Override
+    public boolean deleteUserAddress(UUID id) {
+        UserAddress userAddress = userAddressRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("UserAddress", "id", id.toString()));
+        userAddressRepository.delete(userAddress);
+        return true;
+    }
 }
